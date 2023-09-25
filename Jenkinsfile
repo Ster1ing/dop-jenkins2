@@ -22,7 +22,7 @@ pipeline {
                     agent any
                     // Set 60 seconds to complete the task
                     options {
-                        timeout(time: 60, unit: "SECONDS")
+                        timeout(time: 10, unit: "SECONDS")
                     }
                     steps {
                         // Open the script block
@@ -31,6 +31,7 @@ pipeline {
                             try {
                                 // Use the dir("TODO") { Commands } construct to return to the target folder
                                 // Run the "contact.war" application from the "target" folder
+                                sleep(time: 11, unit: "SECONDS")
                                 echo "This is branch TRY"
                             // Open the catch block
                             } catch (Throwable e) {
@@ -46,7 +47,7 @@ pipeline {
                 stage('Running Test') {
                     steps {
                         // Wait 30 seconds for "contact.war" application to run
-                        sleep(time: 30, unit: "SECONDS")
+                        sleep(time: 5, unit: "SECONDS")
                         // Run only the "RestIT" integration test in the "test" phase of maven
                          echo "This is branch b"
                     }
