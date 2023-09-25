@@ -1,0 +1,32 @@
+name: Check Jenkins pipeline
+on:
+  push:
+    branches:
+      - main
+    workflow_dispatch:
+
+jobs:
+  checking-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checks-out your repository
+        uses: actions/checkout@v3
+  
+      - name: Setup Jenkins
+        uses: jenkinsci/jfr-setup-action@master
+
+      - name: Running Jenkinsfile
+        uses: jenkinsci/jfr-runtime-action@master
+        with:
+          command: run
+          jenkinsfile: Jenkinsfile
+
+      - name: Check Test Running
+        run: 'if ! grep -q "Running com.softserve.verify.RestIT" jenkinsHome/jobs/job/builds/1/log;  then exit 1; fi'
+ 
+      - name: Check Test Running
+        run: 'if grep -q "FAILURE" jenkinsHome/jobs/job/builds/1/log;  then exit 1; fi'
+
+      - name: Check Test Result
+        run: 'if grep -q "Tests run: 1, Failures: 0, Errors: 0, Skipped: 0" jenkinsHome/jobs/job/builds/1/log;  then exit 0; else exit 1; fi'
