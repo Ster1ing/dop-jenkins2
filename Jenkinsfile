@@ -29,9 +29,11 @@ pipeline {
                         script {
                             // Open the try block
                             try {
-                                // Use the dir("TODO") { Commands } construct to return to the target folder
-                                // Run the "contact.war" application from the "target" folder
-                                sleep(time: 11, unit: "SECONDS")
+                                // Use the dir("TODO") { Commands } construct to return to the target folder                                
+                                dir('/root/.jenkins/workspace/Task/target') {
+                                    // Run the "contact.war" application from the "target" folder                                    
+                                }
+                                //sleep(time: 11, unit: "SECONDS")
                                 echo "This is branch TRY"
                             // Open the catch block
                             } catch (Throwable e) {
