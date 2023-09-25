@@ -38,7 +38,7 @@ pipeline {
                         // Wait 30 seconds for "contact.war" application to run
                         sleep(time: 30, unit: "SECONDS")
                         // Run only the "RestIT" integration test in the "test" phase of maven
-                        sh 'mvn -B test -Dtest="RestIT"'                        
+                        sh 'mvn -B test -Dtest=RestIT'                        
                         echo "This is branch b"
                     }
                 }            
