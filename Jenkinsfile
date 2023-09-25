@@ -1,8 +1,8 @@
 pipeline {    
     agent any
     environment {        
-        //APP_PORT = '9090'
-        APP_PORT = '8080'
+        APP_PORT = '9090'
+        //APP_PORT = '8080'
         GLOB_JOB_NAME = "${env.JOB_NAME}"
     }      
     stages {
