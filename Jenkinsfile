@@ -11,10 +11,20 @@ pipeline {
             }
         }
         stage('Integration Test') {
+            options {
+                timeout(time: 60, unit: "SECONDS")
+            }
             parallel {
                 stage('Running Application') {
                     steps {
-                         echo "This is branch a"
+                        script {
+                            try {
+                                echo "This is branch TRY"
+                            } catch (Throwable e) {
+                                echo "Caught ${e.toString()}"
+                                currentBuild.result = "SUCCESS" 
+                            }
+                        }
                     }
                 }
                 stage('Running Test') {
