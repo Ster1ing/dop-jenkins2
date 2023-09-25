@@ -17,6 +17,7 @@ pipeline {
                     // Use any agent
                     // Set 60 seconds to complete the task
                     steps {
+                        sh "echo ${GLOB_JOB_NAME}"
                         // Open the script block
                             // Open the try block
                                 // Use the dir("TODO") { Commands } construct to return to the target folder
