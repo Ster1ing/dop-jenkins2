@@ -6,7 +6,10 @@ pipeline {
     }      
     stages {
         stage('Build') {
-            steps {                
+            steps {
+                //************
+                sh 'printenv'
+                //************
                 sh 'mvn -B package -DskipTests'
             }
         }
