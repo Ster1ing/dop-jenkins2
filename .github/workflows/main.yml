@@ -15,6 +15,8 @@ jobs:
   
       - name: Setup Jenkins
         uses: jenkinsci/jfr-setup-action@master
+        with:
+          jenkins-version: 2.346.3
 
       - name: Running Jenkinsfile
         uses: jenkinsci/jfr-runtime-action@master
