@@ -1,48 +1,37 @@
-pipeline {
-    // Use any agent
+pipeline {    
     agent any
     environment {
-        // Set the environment variable APP_PORT=9090
         APP_PORT = '9090'
-        // Save the job name in a global variable
         GLOB_JOB_NAME = "${env.JOB_NAME}"
     }      
     stages {
         stage('Build') {
-            steps {
-                // Use the maven package phase to build the project
+            steps {                
                 sh 'mvn -B package -DskipTests'
             }
         }
         stage('Integration Test') {            
             // Run the following stages in parallel
             parallel {
-                stage('Running Application') {
-                    // Use any agent
-                    agent any
-                    // Set 60 seconds to complete the task
+                stage('Running Application') {                    
+                    agent any                    
                     options {
                         timeout(time: 10, unit: "SECONDS")
                     }
-                    steps {
-                        // Open the script block
-                        script {
-                            // Open the try block
+                    steps {                        
+                        script {                            
                             try {
                                 // Use the dir("TODO") { Commands } construct to return to the target folder                                
                                 dir('/root/.jenkins/workspace/Task/target') {
-                                    // Run the "contact.war" application from the "target" folder                                    
+                                    // Run the "contact.war" application from the "target" folder
+                                    jar -xvf MyWar.war
                                 }
                                 //sleep(time: 11, unit: "SECONDS")
-                                echo "This is branch TRY"
-                            // Open the catch block
-                            } catch (Throwable e) {
-                                // Return "success" if the task is stopped after 60 seconds
+                                echo "This is branch TRY"                            
+                            } catch (Throwable e) {                                
                                 echo "Caught ${e.toString()}"
-                                currentBuild.result = "SUCCESS" 
-                            // End of try-catch block
-                            }
-                        // End of the script block
+                                currentBuild.result = "SUCCESS"                             
+                            }                        
                         }
                     }
                 }
@@ -53,14 +42,8 @@ pipeline {
                         // Run only the "RestIT" integration test in the "test" phase of maven
                          echo "This is branch b"
                     }
-                }
-            // End of parallel stages
+                }            
             }
-        }
-        stage('Hello'){
-            steps {
-                sh "echo ${GLOB_JOB_NAME}"
-            }
-        }
+        }       
     }
 }
