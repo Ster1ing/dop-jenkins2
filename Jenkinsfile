@@ -10,8 +10,7 @@ pipeline {
                 sh 'mvn -B package -DskipTests'
             }
         }
-        stage('Integration Test') {            
-            // Run the following stages in parallel
+        stage('Integration Test') {                        
             parallel {
                 stage('Running Application') {                    
                     agent any                    
@@ -20,16 +19,12 @@ pipeline {
                     }
                     steps {                        
                         script {                            
-                            try {
-                                // Use the dir("TODO") { Commands } construct to return to the target folder                                
-                                dir("/root/.jenkins/workspace/${GLOB_JOB_NAME}/target") {
-                                //dir('target') {
-                                    // Run the "contact.war" application from the "target" folder
-                                    sh 'jar -xvf contact.war'
-                                    //echo "This is branch to RUN"
-                                }
-                                //sleep(time: 11, unit: "SECONDS")
+                            try {                                
+                                dir("/root/.jenkins/workspace/${GLOB_JOB_NAME}/target") {                                    
+                                    sh 'jar -xvf contact.war'                                    
+                                }                                
                                 echo "This is branch TRY"                            
+                                //sleep(time: 11, unit: "SECONDS")
                             } catch (Throwable e) {                                
                                 echo "Caught ${e.toString()}"
                                 currentBuild.result = "SUCCESS"                             
@@ -39,10 +34,12 @@ pipeline {
                 }
                 stage('Running Test') {
                     steps {
+                        
                         // Wait 30 seconds for "contact.war" application to run
-                        sleep(time: 5, unit: "SECONDS")
+                        sleep(time: 30, unit: "SECONDS")
                         // Run only the "RestIT" integration test in the "test" phase of maven
-                         echo "This is branch b"
+                        sh 'mvn -B test -Dtest="RestIT"'                        
+                        echo "This is branch b"
                     }
                 }            
             }
