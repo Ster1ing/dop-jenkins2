@@ -16,7 +16,7 @@ pipeline {
                 stage('Running Application') {                    
                     agent any                    
                     options {
-                        timeout(time: 10, unit: "SECONDS")
+                        timeout(time: 60, unit: "SECONDS")
                     }
                     steps {                        
                         script {                            
