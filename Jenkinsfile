@@ -1,7 +1,8 @@
 pipeline {    
     agent any
     environment {        
-        APP_PORT = '9090'
+        //APP_PORT = '9090'
+        APP_PORT = '8080'
         GLOB_JOB_NAME = "${env.JOB_NAME}"
     }      
     stages {
@@ -36,7 +37,8 @@ pipeline {
                 stage('Running Test') {
                     steps {
                         sleep(time: 30, unit: "SECONDS")                        
-                        sh 'mvn -B test -Dtest=RestIT -X'                                                
+                        //sh 'mvn -B test -Dtest=RestIT -X'
+                        sh 'mvn -B test -Dtest=RestIT'
                     }
                 }            
             }
