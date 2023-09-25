@@ -36,7 +36,7 @@ pipeline {
                 stage('Running Test') {
                     steps {
                         sleep(time: 30, unit: "SECONDS")                        
-                        sh 'mvn -B test -Dtest=RestIT'                                                
+                        sh 'mvn -B test -Dtest=RestIT -X'                                                
                     }
                 }            
             }
