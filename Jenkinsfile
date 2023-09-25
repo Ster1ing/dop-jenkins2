@@ -24,7 +24,7 @@ pipeline {
                                 // Use the dir("TODO") { Commands } construct to return to the target folder                                
                                 dir('/root/.jenkins/workspace/${GLOB_JOB_NAME}/target') {
                                     // Run the "contact.war" application from the "target" folder
-                                    jar -xvf contact.war
+                                    sh 'jar -xvf contact.war'
                                     //echo "This is branch to RUN"
                                 }
                                 //sleep(time: 11, unit: "SECONDS")
