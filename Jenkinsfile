@@ -24,7 +24,7 @@ pipeline {
                         script {                            
                             try {                                
                                 dir("/root/.jenkins/workspace/${GLOB_JOB_NAME}/target") {                                    
-                                    sh "jar -xvf contact.war --httpPort=${APP_PORT}"
+                                    sh "jar -xvf contact.war"
                                 }                                
                                 echo "This is branch TRY"                            
                                 //sleep(time: 11, unit: "SECONDS")
@@ -37,10 +37,7 @@ pipeline {
                 }
                 stage('Running Test') {
                     steps {
-                        
-                        // Wait 30 seconds for "contact.war" application to run
-                        sleep(time: 30, unit: "SECONDS")
-                        // Run only the "RestIT" integration test in the "test" phase of maven
+                        sleep(time: 30, unit: "SECONDS")                        
                         sh 'mvn -B test -Dtest=RestIT'                        
                         echo "This is branch b"
                     }
