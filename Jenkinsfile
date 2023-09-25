@@ -24,7 +24,7 @@ pipeline {
                         script {                            
                             try {                                
                                 dir("/root/.jenkins/workspace/${GLOB_JOB_NAME}/target") {                                    
-                                    sh "jar -xvf contact.war ${APP_PORT}"
+                                    sh "jar -xvf contact.war"
                                 }                                
                                 echo "This is branch TRY"                            
                                 //sleep(time: 11, unit: "SECONDS")
