@@ -22,9 +22,10 @@ pipeline {
                     steps {                        
                         script {                            
                             try {                                
-                                dir("/root/.jenkins/workspace/${GLOB_JOB_NAME}/target") {                                    
+				dir("target") {                                    
+                                //dir("/root/.jenkins/workspace/${GLOB_JOB_NAME}/target") {                                    
                                     //sh "jar -xvf contact.war"
-                                    sh "java jar contact.war"
+                                    sh "java -jar contact.war"
                                 }                                                                
                                 //sleep(time: 11, unit: "SECONDS")
                             } catch (Throwable e) {                                
@@ -36,7 +37,7 @@ pipeline {
                 }
                 stage('Running Test') {
                     steps {
-                        
+                        /*
                         script {                            
 	                        try {
                                 sh 'curl -v localhost/0:0:0:0:0:0:0:1:9090'		
@@ -45,7 +46,7 @@ pipeline {
 		                        currentBuild.result = "SUCCESS"                                
 	                        }    
                         }
-                        
+                        */
                         sleep(time: 30, unit: "SECONDS")                        
                         //sh 'mvn -B test -Dtest=RestIT -X'
                         sh 'mvn -B test -Dtest=RestIT'
