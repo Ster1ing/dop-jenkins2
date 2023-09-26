@@ -39,7 +39,7 @@ pipeline {
                         
                         script {                            
 	                        try {
-                                sh 'curl -v https://localhost:9090'		
+                                sh 'curl -v localhost/0:0:0:0:0:0:0:1:9090'		
 	                        } catch (Throwable e) {                                
 		                        echo "Caught ${e.toString()}"
 		                        currentBuild.result = "SUCCESS"                                
