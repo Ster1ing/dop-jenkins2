@@ -35,7 +35,7 @@ pipeline {
               if (caughtException) {
                 echo "Caught ERROR ${caughtException.toString()}"
                 error caughtException.message
-                currentBuild.result = "FAILURE"
+                //currentBuild.result = "FAILURE"
               }
             }
           }
