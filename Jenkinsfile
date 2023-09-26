@@ -22,9 +22,9 @@ pipeline {
               Exception caughtException = null
               catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') {
                 try {
-                  dir("${env.JENKINS_HOME}/workspace/${GLOB_JOB_NAME}/target") {
-                    //sleep(time: 61, unit: "SECONDS") /**/
+                  dir("${env.JENKINS_HOME}/workspace/${GLOB_JOB_NAME}/target") {                    
                     sh "java -jar contact.war"
+                    sleep(time: 61, unit: "SECONDS") /**/
                   }
                 } catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException e) {
                   echo "Caught ${e.toString()}"
