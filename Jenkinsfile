@@ -21,6 +21,7 @@ pipeline {
             script {
               try {
                 dir("${env.JENKINS_HOME}/workspace/${GLOB_JOB_NAME}/target") {
+                  sleep(time: 61, unit: "SECONDS") /**/
                   sh "java -jar contact.war"
                 }
               } catch (Throwable e) {
