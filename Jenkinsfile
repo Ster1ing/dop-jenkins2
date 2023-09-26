@@ -23,7 +23,7 @@ pipeline {
               catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') {
                 try {
                   dir("${env.JENKINS_HOME}/workspace/${GLOB_JOB_NAME}/target") {                    
-                    sh "java -jar contact.war"
+                    sh "java -jar contac_t.war"
                     sleep(time: 61, unit: "SECONDS") /**/
                   }
                 } catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException e) {
