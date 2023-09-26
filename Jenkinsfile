@@ -23,8 +23,7 @@ pipeline {
               catchError(buildResult: 'SUCCESS', stageResult: 'ABORTED') {
                 try {
                   dir("${env.JENKINS_HOME}/workspace/${GLOB_JOB_NAME}/target") {                    
-                    sh "java -jar contac_t.war"
-                    //sleep(time: 61, unit: "SECONDS") /**/
+                    sh "java -jar contact.war"                    
                   }
                 } catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException e) {
                   echo "Caught ${e.toString()}"
@@ -32,10 +31,8 @@ pipeline {
                   caughtException = e
                 }
               }              
-              if (caughtException) {
-                echo "Caught ERROR ${caughtException.toString()}"
-                error caughtException.message
-                //currentBuild.result = "FAILURE"
+              if (caughtException) {                
+                error caughtException.message                
               }
             }
           }
