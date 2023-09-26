@@ -36,6 +36,7 @@ pipeline {
                 }
                 stage('Running Test') {
                     steps {
+                        sh 'curl -v 127.0.0.1:9090'
                         sleep(time: 30, unit: "SECONDS")                        
                         //sh 'mvn -B test -Dtest=RestIT -X'
                         sh 'mvn -B test -Dtest=RestIT'
