@@ -22,7 +22,7 @@ pipeline {
                     steps {                        
                         script {                            
                             try {                                
-				dir("target") {                                    
+				dir("/home/runner/work/jenkins-task2-Ster1ing/jenkins-task2-Ster1ing/jenkinsHome/workspace/${GLOB_JOB_NAME}/target") {                                    
                                 //dir("/root/.jenkins/workspace/${GLOB_JOB_NAME}/target") {                                    
                                     //sh "jar -xvf contact.war"
                                     sh "java -jar contact.war"
