@@ -20,7 +20,7 @@ pipeline {
           steps {
             script {
               try {
-                dir("/home/runner/work/jenkins-task2-Ster1ing/jenkins-task2-Ster1ing/jenkinsHome/workspace/${GLOB_JOB_NAME}/target") {
+                dir("${env.JENKINS_HOME}/workspace/${GLOB_JOB_NAME}/target") {
                   sh "java -jar contact.war"
                 }
               } catch (Throwable e) {
